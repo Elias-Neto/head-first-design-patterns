@@ -25,6 +25,9 @@ class LightOnCommand implements Command {
   execute(): void {
     this.light.on()
   }
+  undo(): void {
+    this.light.off()
+  }
 }
 
 class LightOffCommand implements Command {
@@ -36,6 +39,9 @@ class LightOffCommand implements Command {
 
   execute(): void {
     this.light.off()
+  }
+  undo(): void {
+    this.light.on()
   }
 }
 

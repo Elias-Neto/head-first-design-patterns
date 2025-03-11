@@ -7,9 +7,6 @@ class GarageDoor {
   down(): void {
     console.log("Garage door down")
   }
-  stop(): void {
-    console.log("Garage door stop")
-  }
 }
 
 class GarageDoorOpenCommand implements Command {
@@ -21,6 +18,9 @@ class GarageDoorOpenCommand implements Command {
 
   execute(): void {
     this.garageDoor.up()
+  }
+  undo(): void {
+    this.garageDoor.down()
   }
 }
 
@@ -34,18 +34,9 @@ class GarageDoorCloseCommand implements Command {
   execute(): void {
     this.garageDoor.down()
   }
-}
-
-class GarageDoorStopCommand implements Command {
-  garageDoor: GarageDoor
-
-  constructor(garageDoor: GarageDoor) {
-    this.garageDoor = garageDoor
-  }
-
-  execute(): void {
-    this.garageDoor.stop()
+  undo(): void {
+    this.garageDoor.up()
   }
 }
 
-export { GarageDoor, GarageDoorOpenCommand, GarageDoorCloseCommand, GarageDoorStopCommand }
+export { GarageDoor, GarageDoorOpenCommand, GarageDoorCloseCommand }

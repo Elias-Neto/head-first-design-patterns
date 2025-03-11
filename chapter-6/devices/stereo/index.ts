@@ -27,6 +27,9 @@ class StereoOnWithCDCommand implements Command {
     this.stereo.setCD()
     this.stereo.setVolume(11)
   }
+  undo(): void {
+    this.stereo.off()
+  }
 }
 
 class StereoOff implements Command {
@@ -38,6 +41,11 @@ class StereoOff implements Command {
 
   execute(): void {
     this.stereo.off()
+  }
+  undo(): void {
+    this.stereo.on()
+    this.stereo.setCD()
+    this.stereo.setVolume(11)
   }
 }
 
